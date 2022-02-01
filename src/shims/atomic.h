@@ -44,10 +44,10 @@
 #define memory_order_ordered    memory_order_seq_cst
 #define memory_order_dependency memory_order_acquire
 
-#define os_atomic(type) type _Atomic
+#define os_atomic(type) _Atomic(type)
 
 #define _os_atomic_c11_atomic(p) \
-		((__typeof__(*(p)) _Atomic *)(p))
+		(_Atomic(__typeof__(*(p)))*(p))
 
 // This removes the _Atomic and volatile qualifiers on the type of *p
 #define _os_atomic_basetypeof(p) \
